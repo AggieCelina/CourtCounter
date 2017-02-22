@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.android.courtcounter.MainActivity">
+
+
+    <Chronometer
+        android:id="@+id/chrono"
+        style="@style/timeTextViewStyle"
+        android:layout_width="match_parent"
+        android:textSize="120sp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="54dp"
+        android:layout_marginTop="54dp"
+        android:text="0" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:paddingTop="16dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="8dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:onClick="addOneToMove"
+            android:text="+" />
+
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:text="move" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:layout_marginRight="8dp"
+            android:onClick="substractOneFromMove"
+            android:text="-" />
+
+        <TextView
+            android:id="@+id/move_time"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="8dp"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_marginRight="24dp"
+            android:gravity="center"
+            android:text="s" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:paddingTop="16dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="8dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:onClick="addOneToRest"
+            android:text="+" />
+
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:text="rest" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:layout_marginRight="8dp"
+            android:onClick="substractOneFromRest"
+            android:text="-" />
+
+        <TextView
+            android:id="@+id/rest_time"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="8dp"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_marginRight="24dp"
+            android:gravity="center"
+            android:text="s" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:paddingTop="16dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="8dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:onClick="addOneToRepeat"
+            android:text="+" />
+
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:text="repeat set" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:layout_marginRight="8dp"
+            android:onClick="substractOneFromRepeat"
+            android:text="-" />
+
+        <TextView
+            android:id="@+id/repeat_time"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="8dp"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_marginRight="24dp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="bottom">
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+        android:onClick="resetEverything"
+        android:text="reset"
+        android:textAllCaps="true" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+
+        android:onClick="startTimer"
+        android:text="start"
+        android:textAllCaps="true" />
+
+    </LinearLayout>
+
+</LinearLayout>

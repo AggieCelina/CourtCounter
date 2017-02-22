@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#FF9800</item>
+        <item name="colorButtonNormal">#FF9800</item>
+    </style>
+
+    <style name="TeamTextViewStyle" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:textSize">120sp</item>
+        <item name="android:textColor">#616161</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+
+
+    </style>
+
+    <style name="timeTextViewStyle" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:textSize">56sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+
+    </style>
+
+    <style name="buttonPlusMinusTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:padding">30dp</item>
+
+    </style>
+</resources>
