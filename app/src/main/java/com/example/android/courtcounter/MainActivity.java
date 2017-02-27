@@ -10,30 +10,47 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
+import static com.example.android.courtcounter.R.id.chrono;
+
 public class MainActivity extends AppCompatActivity {
 
     int timeMove = 0;
     int timeRest = 0;
     int timesRepeat = 0;
     int nbOfSets = 0;
-
+    private ViewHolder viewHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        viewHolder = new ViewHolder();
+        viewHolder.movePlusButton = (Button) findViewById(R.id.move_plus_button);
+        viewHolder.moveSubButton = (Button) findViewById(R.id.move_sub_button);
+        viewHolder.restPlusButton = (Button) findViewById(R.id.rest_plus_button);
+        viewHolder.restSubButton = (Button) findViewById(R.id.rest_sub_button);
+        viewHolder.setPlusButton = (Button) findViewById(R.id.set_plus_button);
+        viewHolder.setSubButton = (Button) findViewById(R.id.set_sub_button);
+        viewHolder.startButton = (Button) findViewById(R.id.start_button);
+        viewHolder.chrono = (Chronometer) findViewById(chrono);
+        viewHolder.timeMoveView = (TextView) findViewById(R.id.move_time);
+        viewHolder.timeRestView = (TextView) findViewById(R.id.rest_time);
+        viewHolder.timesRepeatView = (TextView) findViewById(R.id.repeat_time);
     }
 
-
-/*
-add and substract time for move
- */
+    /*
+    View Holder - hold views
+     */
 
     public void addOneToMove(View view) {
 
         timeMove = timeMove + 1;
         displayForTimeMove(timeMove);
     }
+
+/*
+add and substract time for move
+ */
 
     public void substractOneFromMove(View view) {
 
@@ -44,16 +61,16 @@ add and substract time for move
         }
     }
 
-
-    /*
-    add and substract time for rest
-    */
-
     public void addOneToRest(View view) {
 
         timeRest = timeRest + 1;
         displayForTimeRest(timeRest);
     }
+
+
+    /*
+    add and substract time for rest
+    */
 
     public void substractOneFromRest(View view) {
 
@@ -61,26 +78,21 @@ add and substract time for move
         displayForTimeRest(timeRest);
     }
 
-     /*
-    add and substract time for repeat
-    */
-
     public void addOneToRepeat(View view) {
 
         timesRepeat = timesRepeat + 1;
         displayForTimesRepeat(timesRepeat);
     }
 
+     /*
+    add and substract time for repeat
+    */
+
     public void substractOneFromRepeat(View view) {
 
         timesRepeat = timesRepeat - 1;
         displayForTimesRepeat(timesRepeat);
     }
-
-    /*
-
-    reset everything
-     */
 
     public void resetEverything(View view) {
 
@@ -91,91 +103,75 @@ add and substract time for move
         displayForTimeRest(timeRest);
         displayForTimesRepeat(timesRepeat);
 
-        Chronometer chrono = (Chronometer) findViewById(R.id.chrono);
-        chrono.setBase(SystemClock.elapsedRealtime());
-        chrono.stop();
-        chrono.setTextSize(120);
+        viewHolder.chrono.setBase(SystemClock.elapsedRealtime());
+        viewHolder.chrono.stop();
+        viewHolder.chrono.setTextSize(120);
 
         PlayBeep();
 
         //enable buttons
-        Button startButton = (Button) findViewById(R.id.start_button);
-        startButton.setEnabled(true);
-        Button movePlusButton = (Button) findViewById(R.id.move_plus_button);
-        movePlusButton.setEnabled(true);
-        Button moveSubButton = (Button) findViewById(R.id.move_sub_button);
-        moveSubButton.setEnabled(true);
-        Button restPlusButton = (Button) findViewById(R.id.rest_plus_button);
-        restPlusButton.setEnabled(true);
-        Button restSubButton = (Button) findViewById(R.id.rest_sub_button);
-        restSubButton.setEnabled(true);
-        Button setPlusButton = (Button) findViewById(R.id.set_plus_button);
-        setPlusButton.setEnabled(true);
-        Button setSubButton = (Button) findViewById(R.id.set_sub_button);
-        setSubButton.setEnabled(true);
+        viewHolder.startButton.setEnabled(true);
+        viewHolder.movePlusButton.setEnabled(true);
+        viewHolder.moveSubButton.setEnabled(true);
+        viewHolder.restPlusButton.setEnabled(true);
+        viewHolder.restSubButton.setEnabled(true);
+        viewHolder.setPlusButton.setEnabled(true);
+        viewHolder.setSubButton.setEnabled(true);
 
 
+    }
+
+    /*
+
+    reset everything
+     */
+
+    public void displayForTimeMove(int time) {
+
+        viewHolder.timeMoveView.setText(String.valueOf(time));
     }
     /*
     display methods
      */
 
-    public void displayForTimeMove(int time) {
-
-        TextView timeMoveView = (TextView) findViewById(R.id.move_time);
-        timeMoveView.setText(String.valueOf(time));
-    }
-
-
     public void displayForTimeRest(int time) {
 
-        TextView timeRestView = (TextView) findViewById(R.id.rest_time);
-        timeRestView.setText(String.valueOf(time));
+        viewHolder.timeRestView.setText(String.valueOf(time));
     }
 
     public void displayForTimesRepeat(int time) {
 
-        TextView timesRepeatView = (TextView) findViewById(R.id.repeat_time);
-        timesRepeatView.setText(String.valueOf(time));
+        viewHolder.timesRepeatView.setText(String.valueOf(time));
+    }
+
+    public void startTimerMove(View view) {
+
+
+        viewHolder.chrono.setTextSize(120);
+        viewHolder.chrono.setBase(SystemClock.elapsedRealtime());
+        viewHolder.chrono.start();
+        countTimerMove(viewHolder.chrono, timeMove + 1);
+        PlayBeep();
+//disable buttons
+        viewHolder.startButton.setEnabled(false);
+        viewHolder.movePlusButton.setEnabled(false);
+        viewHolder.moveSubButton.setEnabled(false);
+        viewHolder.restPlusButton.setEnabled(false);
+        viewHolder.restSubButton.setEnabled(false);
+        viewHolder.setPlusButton.setEnabled(false);
+        viewHolder.setSubButton.setEnabled(false);
+
+
     }
 
 
     //starts chronometer
 
-    public void startTimerMove(View view) {
-
-
-        Chronometer chrono = (Chronometer) findViewById(R.id.chrono);
-        chrono.setTextSize(120);
-        chrono.setBase(SystemClock.elapsedRealtime());
-        chrono.start();
-        countTimerMove(chrono, timeMove + 1);
-        PlayBeep();
-//disable buttons
-        Button startButton = (Button) findViewById(R.id.start_button);
-        startButton.setEnabled(false);
-        Button movePlusButton = (Button) findViewById(R.id.move_plus_button);
-        movePlusButton.setEnabled(false);
-        Button moveSubButton = (Button) findViewById(R.id.move_sub_button);
-        moveSubButton.setEnabled(false);
-        Button restPlusButton = (Button) findViewById(R.id.rest_plus_button);
-        restPlusButton.setEnabled(false);
-        Button restSubButton = (Button) findViewById(R.id.rest_sub_button);
-        restSubButton.setEnabled(false);
-        Button setPlusButton = (Button) findViewById(R.id.set_plus_button);
-        setPlusButton.setEnabled(false);
-        Button setSubButton = (Button) findViewById(R.id.set_sub_button);
-        setSubButton.setEnabled(false);
-
-
-    }
-
     public void startTimerRest(View view) {
 
-        Chronometer chrono = (Chronometer) findViewById(R.id.chrono);
-        chrono.setBase(SystemClock.elapsedRealtime());
-        chrono.start();
-        countTimerRest(chrono, timeRest + 1);
+        viewHolder.chrono.setBase(SystemClock.elapsedRealtime());
+        viewHolder.chrono.start();
+        countTimerRest(viewHolder.chrono, timeRest + 1);
         PlayBeep();
 
 
@@ -213,7 +209,6 @@ add and substract time for move
 
 
     }
-
 
     public void countTimerRest(Chronometer chronometer, final int timeType) {
 
@@ -261,6 +256,22 @@ add and substract time for move
         ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
         toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
 
+    }
+
+    private class ViewHolder {
+
+
+        Button movePlusButton;
+        Button moveSubButton;
+        Button restPlusButton;
+        Button restSubButton;
+        Button setSubButton;
+        Button setPlusButton;
+        Button startButton;
+        Chronometer chrono;
+        TextView timeMoveView;
+        TextView timeRestView;
+        TextView timesRepeatView;
     }
 
 
