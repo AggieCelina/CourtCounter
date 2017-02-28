@@ -1,5 +1,6 @@
 package com.example.android.courtcounter;
 
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     int timeRest = 0;
     int timesRepeat = 0;
     int nbOfSets = 0;
+    int setCounter = 0;
     private ViewHolder viewHolder;
 
     @Override
@@ -36,11 +38,16 @@ public class MainActivity extends AppCompatActivity {
         viewHolder.timeMoveView = (TextView) findViewById(R.id.move_time);
         viewHolder.timeRestView = (TextView) findViewById(R.id.rest_time);
         viewHolder.timesRepeatView = (TextView) findViewById(R.id.repeat_time);
+        viewHolder.moveTextView = (TextView) findViewById(R.id.move_textView);
+        viewHolder.restTextView = (TextView) findViewById(R.id.rest_textView);
+        viewHolder.setCounter = (TextView) findViewById(R.id.set_counter);
     }
 
+
+
     /*
-    View Holder - hold views
-     */
+add and substract time for move
+ */
 
     public void addOneToMove(View view) {
 
@@ -48,9 +55,6 @@ public class MainActivity extends AppCompatActivity {
         displayForTimeMove(timeMove);
     }
 
-/*
-add and substract time for move
- */
 
     public void substractOneFromMove(View view) {
 
@@ -61,6 +65,11 @@ add and substract time for move
         }
     }
 
+
+     /*
+    add and substract time for rest
+    */
+
     public void addOneToRest(View view) {
 
         timeRest = timeRest + 1;
@@ -68,15 +77,16 @@ add and substract time for move
     }
 
 
-    /*
-    add and substract time for rest
-    */
-
     public void substractOneFromRest(View view) {
 
         timeRest = timeRest - 1;
         displayForTimeRest(timeRest);
     }
+
+
+       /*
+    add and substract time for repeat
+    */
 
     public void addOneToRepeat(View view) {
 
@@ -84,9 +94,6 @@ add and substract time for move
         displayForTimesRepeat(timesRepeat);
     }
 
-     /*
-    add and substract time for repeat
-    */
 
     public void substractOneFromRepeat(View view) {
 
@@ -94,18 +101,26 @@ add and substract time for move
         displayForTimesRepeat(timesRepeat);
     }
 
+
+    /*
+
+    reset everything
+     */
+
     public void resetEverything(View view) {
 
         timeRest = 0;
         timeMove = 0;
         timesRepeat = 0;
+        setCounter = 0;
+        nbOfSets = 0;
         displayForTimeMove(timeMove);
         displayForTimeRest(timeRest);
         displayForTimesRepeat(timesRepeat);
 
         viewHolder.chrono.setBase(SystemClock.elapsedRealtime());
         viewHolder.chrono.stop();
-        viewHolder.chrono.setTextSize(120);
+        viewHolder.chrono.setTextSize(100);
 
         PlayBeep();
 
@@ -118,21 +133,22 @@ add and substract time for move
         viewHolder.setPlusButton.setEnabled(true);
         viewHolder.setSubButton.setEnabled(true);
 
+        viewHolder.restTextView.setBackgroundColor(Color.TRANSPARENT);
+        viewHolder.moveTextView.setBackgroundColor(Color.TRANSPARENT);
+
+        viewHolder.setCounter.setText(String.valueOf(setCounter));
+
 
     }
 
     /*
-
-    reset everything
+    display methods
      */
 
     public void displayForTimeMove(int time) {
 
         viewHolder.timeMoveView.setText(String.valueOf(time));
     }
-    /*
-    display methods
-     */
 
     public void displayForTimeRest(int time) {
 
@@ -145,9 +161,9 @@ add and substract time for move
     }
 
     public void startTimerMove(View view) {
+        setCounter = setCounter + 1;
 
-
-        viewHolder.chrono.setTextSize(120);
+        viewHolder.chrono.setTextSize(100);
         viewHolder.chrono.setBase(SystemClock.elapsedRealtime());
         viewHolder.chrono.start();
         countTimerMove(viewHolder.chrono, timeMove + 1);
@@ -160,6 +176,9 @@ add and substract time for move
         viewHolder.restSubButton.setEnabled(false);
         viewHolder.setPlusButton.setEnabled(false);
         viewHolder.setSubButton.setEnabled(false);
+        viewHolder.moveTextView.setBackgroundColor(Color.parseColor("#FF4081"));
+        viewHolder.restTextView.setBackgroundColor(Color.TRANSPARENT);
+        viewHolder.setCounter.setText(String.valueOf(setCounter));
 
 
     }
@@ -173,6 +192,8 @@ add and substract time for move
         viewHolder.chrono.start();
         countTimerRest(viewHolder.chrono, timeRest + 1);
         PlayBeep();
+        viewHolder.restTextView.setBackgroundColor(Color.parseColor("#FF4081"));
+        viewHolder.moveTextView.setBackgroundColor(Color.TRANSPARENT);
 
 
     }
@@ -258,6 +279,12 @@ add and substract time for move
 
     }
 
+
+
+    /*
+    View Holder - hold views
+     */
+
     private class ViewHolder {
 
 
@@ -272,6 +299,9 @@ add and substract time for move
         TextView timeMoveView;
         TextView timeRestView;
         TextView timesRepeatView;
+        TextView moveTextView;
+        TextView restTextView;
+        TextView setCounter;
     }
 
 

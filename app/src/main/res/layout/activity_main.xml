@@ -1,221 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:keepScreenOn="true"
     tools:context="com.example.android.courtcounter.MainActivity">
+
+    <ImageView
+        android:id="@+id/background_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/run_background" />
+
+    <LinearLayout
+        android:id="@+id/workout_params"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_margin="8dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/move_textView"
+            style="@style/TopBarTextViewStyle"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="move" />
+
+        <TextView
+            android:id="@+id/rest_textView"
+            style="@style/TopBarTextViewStyle"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="rest" />
+
+        <TextView
+            android:id="@+id/set_counter"
+            style="@style/TopBarTextViewStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
 
 
     <Chronometer
         android:id="@+id/chrono"
-        style="@style/timeTextViewStyle"
-        android:layout_width="match_parent"
-        android:textSize="120sp"
-        android:layout_height="150dp"
-        android:gravity="center"
-        android:layout_marginBottom="54dp"
-        android:layout_marginTop="54dp"
+        style="@style/ChronoStyle"
+        android:layout_below="@id/workout_params"
         android:text="0" />
 
     <View
+        android:id="@+id/line"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
+        android:layout_below="@id/chrono"
         android:background="@android:color/darker_gray" />
 
     <LinearLayout
+        android:id="@+id/move_params"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/line"
         android:orientation="horizontal"
         android:paddingBottom="8dp"
         android:paddingTop="16dp">
 
         <Button
             android:id="@+id/move_plus_button"
+            style="@style/PickerButtonStyle"
             android:layout_width="0dp"
             android:layout_marginLeft="24dp"
-            android:layout_marginRight="8dp"
-            android:layout_height="50dp"
             android:layout_weight="2"
             android:onClick="addOneToMove"
             android:text="+" />
 
         <TextView
 
+            style="@style/PickerTextViewStyle"
             android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
             android:layout_weight="2"
-            android:layout_marginRight="8dp"
-            android:gravity="center"
             android:text="move" />
 
         <Button
             android:id="@+id/move_sub_button"
+            style="@style/PickerButtonStyle"
             android:layout_width="0dp"
-            android:layout_height="50dp"
             android:layout_weight="2"
-            android:layout_marginRight="8dp"
             android:onClick="substractOneFromMove"
             android:text="-" />
 
         <TextView
             android:id="@+id/move_time"
+            style="@style/PickerTextViewStyle"
             android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="8dp"
-            android:layout_gravity="center"
             android:layout_weight="2"
             android:background="@color/colorPrimary"
-            android:gravity="center"
             android:text="" />
 
         <TextView
+            style="@style/PickerTextViewStyle"
             android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
             android:layout_marginRight="24dp"
-            android:gravity="center"
+            android:layout_weight="1"
             android:text="s" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/rest_params"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/move_params"
         android:orientation="horizontal"
         android:paddingBottom="8dp"
         android:paddingTop="16dp">
 
         <Button
             android:id="@+id/rest_plus_button"
+            style="@style/PickerButtonStyle"
             android:layout_width="0dp"
             android:layout_marginLeft="24dp"
-            android:layout_marginRight="8dp"
-            android:layout_height="50dp"
             android:layout_weight="2"
             android:onClick="addOneToRest"
             android:text="+" />
 
         <TextView
-
+            style="@style/PickerTextViewStyle"
             android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
             android:layout_weight="2"
-            android:layout_marginRight="8dp"
-            android:gravity="center"
             android:text="rest" />
 
         <Button
             android:id="@+id/rest_sub_button"
+            style="@style/PickerButtonStyle"
             android:layout_width="0dp"
-            android:layout_height="50dp"
             android:layout_weight="2"
-            android:layout_marginRight="8dp"
             android:onClick="substractOneFromRest"
             android:text="-" />
 
         <TextView
             android:id="@+id/rest_time"
+            style="@style/PickerTextViewStyle"
             android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="8dp"
-            android:layout_gravity="center"
             android:layout_weight="2"
             android:background="@color/colorPrimary"
-            android:gravity="center"
             android:text="" />
 
         <TextView
+            style="@style/PickerTextViewStyle"
             android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
             android:layout_marginRight="24dp"
-            android:gravity="center"
+            android:layout_weight="1"
             android:text="s" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/set_params"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/rest_params"
         android:orientation="horizontal"
         android:paddingBottom="8dp"
         android:paddingTop="16dp">
 
         <Button
             android:id="@+id/set_plus_button"
+            style="@style/PickerButtonStyle"
             android:layout_width="0dp"
             android:layout_marginLeft="24dp"
-            android:layout_marginRight="8dp"
-            android:layout_height="50dp"
             android:layout_weight="2"
             android:onClick="addOneToRepeat"
             android:text="+" />
 
         <TextView
 
+            style="@style/PickerTextViewStyle"
             android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
             android:layout_weight="2"
-            android:layout_marginRight="8dp"
-            android:gravity="center"
             android:text="repeat set" />
 
         <Button
+
             android:id="@+id/set_sub_button"
+            style="@style/PickerButtonStyle"
             android:layout_width="0dp"
-            android:layout_height="50dp"
             android:layout_weight="2"
-            android:layout_marginRight="8dp"
             android:onClick="substractOneFromRepeat"
             android:text="-" />
 
         <TextView
             android:id="@+id/repeat_time"
+            style="@style/PickerTextViewStyle"
             android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="8dp"
-            android:layout_gravity="center"
             android:layout_weight="2"
             android:background="@color/colorPrimary"
-            android:gravity="center"
             android:text="" />
 
         <TextView
+            style="@style/PickerTextViewStyle"
             android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
             android:layout_marginRight="24dp"
-            android:gravity="center" />
+            android:layout_weight="1"
+            android:text="sets" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/start_reset_buttons"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="bottom">
+        android:gravity="bottom"
+        android:orientation="horizontal">
 
-    <Button
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:padding="30dp"
-        android:onClick="resetEverything"
-        android:text="reset"
-        android:textAllCaps="true" />
+        <Button
+            style="@style/BottomBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:onClick="resetEverything"
+            android:text="reset" />
 
-    <Button
-        android:id="@+id/start_button"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:padding="30dp"
-
-        android:onClick="startTimerMove"
-        android:text="start"
-        android:textAllCaps="true" />
+        <Button
+            android:id="@+id/start_button"
+            style="@style/BottomBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:onClick="startTimerMove"
+            android:text="start" />
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
